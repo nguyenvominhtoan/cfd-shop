@@ -10,15 +10,12 @@ const ModalPage = () => {
     closeAuthenModal();
     setrenderForm("login");
   };
-  console.log("isAuthenModalOpen", isAuthenModalOpen);
+
   return (
     <>
       <div
-        className="modal fade"
-        id="signin-modal"
-        tabIndex={-1}
-        role="dialog"
-        aria-hidden="true"
+        className={`modal fade ${isAuthenModalOpen ? "show" : ""}`}
+        style={{ display: isAuthenModalOpen ? "block" : "none" }}
       >
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
@@ -30,7 +27,7 @@ const ModalPage = () => {
                 aria-label="Close"
                 onClick={onClose}
               >
-                <span aria-hidden="true">
+                <span aria-hidden="true" onClick={onClose}>
                   <i className="icon-close" />
                 </span>
               </button>
@@ -69,10 +66,16 @@ const ModalPage = () => {
                   </ul>
                   <div className="tab-content" id="tab-content-5">
                     {/*  ================= Login ================= */}
-                    <LoginForm />
+                    <LoginForm
+                      renderForm={renderForm}
+                      setrenderForm={setrenderForm}
+                    />
                     {/* .End .tab-pane */}
                     {/* ================= Register =================== */}
-                    <RegisterForm />
+                    <RegisterForm
+                      renderForm={renderForm}
+                      setrenderForm={setrenderForm}
+                    />
                     {/* .End .tab-pane */}
                   </div>
                   {/* End .tab-content */}
@@ -87,6 +90,11 @@ const ModalPage = () => {
         </div>
         {/* End .modal-dialog */}
       </div>
+      {isAuthenModalOpen && (
+        <div
+          className={`modal-backdrop fade ${isAuthenModalOpen ? "show" : ""}`}
+        ></div>
+      )}
     </>
   );
 };

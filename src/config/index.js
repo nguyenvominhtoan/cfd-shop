@@ -1,4 +1,4 @@
-const PRODUCT_PATH = "/courses";
+const PRODUCT_PATH = "/product";
 const PROFILE_PATH = "/profile";
 
 export const PATHS = {

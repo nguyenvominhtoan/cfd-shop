@@ -31,10 +31,10 @@ const RegisterForm = () => {
     if (Object.keys(errObj)?.length === 0) {
       // handleSubmit?.(form);
       onRegister?.({
-        // firstName: form?.name || "",
-        // lastName: "",
-        // email: form?.email || "",
-        // password: form?.password || "",
+        firstName: form?.name || "",
+        lastName: "",
+        email: form?.email || "",
+        password: form?.password || "",
       });
     } else {
       console.log("Validate Fail");

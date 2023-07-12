@@ -13,6 +13,7 @@ import ShippingPage from "./pages/Shipping";
 import DashboardPage from "./pages/Dashboard";
 import ProductPage from "./pages/product/product";
 import ProductDetail from "./pages/product/productDetail";
+import BlogPage from "./pages/Blog";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,16 +27,16 @@ function App() {
           <Route path={PATHS.PRODUCT_DETAIL} element={<ProductDetail />} />
           <Route path={PATHS.CONTACT} element={<ContactPage />} />
           <Route path={PATHS.ABOUT} element={<AboutPage />} />
+          <Route path={PATHS.BLOG} element={<BlogPage />} />
           <Route path={PATHS.PRIVACYPOLICY} element={<PrivacyPolicy />} />
           <Route path={PATHS.RETURNS} element={<ReturnsPage />} />
           <Route path={PATHS.PAYMENT} element={<PaymentPage />} />
-          {/* <Route path={PATHS.PROFILE.INDEX} element={<ProfileLayout />}>
-            <Route index element={<MyInfo />} />
+          <Route path={PATHS.PROFILE.INDEX} element={<DashboardPage />}>
+            {/* <Route index element={<MyInfo />} />
             <Route path={PATHS.PROFILE.COURSES} element={<MyCourses />} />
-            <Route path={PATHS.PROFILE.PAYMENT} element={<MyPayment />} />
-          </Route> */}
+            <Route path={PATHS.PROFILE.PAYMENT} element={<MyPayment />} /> */}
+          </Route>
           <Route path={PATHS.SHIPPING} element={<ShippingPage />} />
-          <Route path="modal" element={<DashboardPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

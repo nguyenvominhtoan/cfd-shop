@@ -8,7 +8,14 @@ export const authService = {
   register(payload = {}) {
     return axios.post(`${BASE_URL}/customer/register`, payload);
   },
-  getProfile() {
-    return axios.post(`${BASE_URL}/customer/profiles`);
+  getProfile(token = "") {
+    return axios.get(`${BASE_URL}/customer/profiles`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
+  // updateProfile(payload = {}) {
+  //   return axiosI;
+  // },
 };

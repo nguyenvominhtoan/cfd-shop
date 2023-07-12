@@ -5,7 +5,6 @@ import { useAuthen } from "./AuthenContext";
 
 const Header = () => {
   const { setIsAuthenModalOpen, isAuthenModalOpen } = useAuthen();
-  console.log("isAuthenModalOpen", isAuthenModalOpen);
   return (
     <header className="header">
       <div className="header-top">
@@ -63,7 +62,7 @@ const Header = () => {
           <nav className="main-nav">
             <ul className="menu">
               <li className="active">
-                <a href="index.html">Home</a>
+                <Link to={PATHS.HOME}>Home</Link>
               </li>
               <li>
                 <Link to={PATHS.ABOUT}>About Us</Link>

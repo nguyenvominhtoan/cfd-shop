@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PATHS } from "../../config";
 
 const ProductPage = () => {
   return (
@@ -65,7 +66,7 @@ const ProductPage = () => {
                     <div className="col-6 col-md-4 col-lg-4">
                       <div className="product product-2">
                         <figure className="product-media">
-                          <Link to="/productDetail">
+                          <Link to={PATHS.PRODUCT_DETAIL}>
                             <img
                               src="assets/images/demos/demo-3/products/product-11.jpg"
                               alt="Product image"

@@ -3,7 +3,7 @@ import { useAuthen } from "../../components/AuthenContext";
 import Input from "../../components/Input";
 import { validate } from "../../utils/validate";
 
-const LoginForm = () => {
+const LoginForm = ({ rederForm, setRenderForm }) => {
   const { onLogin } = useAuthen();
   const [form, setForm] = useState({});
   const [error, setError] = useState({});
@@ -39,7 +39,8 @@ const LoginForm = () => {
     <>
       {" "}
       <div
-        className="tab-pane fade show active"
+        className={`tab-pane fade show active
+         ${rederForm === "login" ? "active" : ""}`}
         id="signin"
         role="tabpanel"
         aria-labelledby="signin-tab"
