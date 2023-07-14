@@ -26,9 +26,9 @@ export const AuthenProvider = ({ children }) => {
   const onGetProfile = async (token) => {
     const profileRes = await authService.getProfile(token);
     console.log("profileRes", profileRes);
-    if (profileRes === "khongcalldcapi") {
-      navigate("/about", { replace: true });
-    }
+    // if (profileRes === "khongcalldcapi") {
+    //   navigate("/about", { replace: true });
+    // }
     if (profileRes?.data?.data) {
       setProfileInfo(profileRes?.data?.data);
     }
@@ -62,6 +62,7 @@ export const AuthenProvider = ({ children }) => {
     setProfileInfo("");
     // message.success("Dang xuat thanh cong");
   };
+  const handleProduct = () => {};
   const onRegister = async (registerData) => {
     //call api
     try {
