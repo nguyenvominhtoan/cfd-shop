@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthen } from "../components/AuthenContext";
 
 const DashboardPage = () => {
+  const { profileInfo } = useAuthen();
+  const [form, setForm] = useState({});
+
+  const onSubmit = (e) => {
+    e.pre;
+  };
+  useEffect(() => {
+    if (profileInfo) {
+      setForm(profileInfo);
+    }
+  }, [profileInfo]);
+
   return (
     <>
       {" "}
@@ -101,7 +114,11 @@ const DashboardPage = () => {
                       role="tabpanel"
                       aria-labelledby="tab-account-link"
                     >
-                      <form action="#" className="account-form">
+                      <form
+                        onSubmit={onSubmit}
+                        action="#"
+                        className="account-form"
+                      >
                         <div className="row">
                           <div className="col-sm-6">
                             <label>Full Name *</label>

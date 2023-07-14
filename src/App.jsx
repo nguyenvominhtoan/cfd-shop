@@ -31,7 +31,7 @@ function App() {
           <Route path={PATHS.PRIVACYPOLICY} element={<PrivacyPolicy />} />
           <Route path={PATHS.RETURNS} element={<ReturnsPage />} />
           <Route path={PATHS.PAYMENT} element={<PaymentPage />} />
-          <Route path={PATHS.PROFILE.INDEX} element={<DashboardPage />}>
+          <Route path={PATHS.DASHBOARD} element={<DashboardPage />}>
             {/* <Route index element={<MyInfo />} />
             <Route path={PATHS.PROFILE.COURSES} element={<MyCourses />} />
             <Route path={PATHS.PROFILE.PAYMENT} element={<MyPayment />} /> */}

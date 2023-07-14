@@ -4,7 +4,9 @@ import { PATHS } from "../config";
 import { useAuthen } from "./AuthenContext";
 
 const Header = () => {
-  const { setIsAuthenModalOpen, isAuthenModalOpen } = useAuthen();
+  const { setIsAuthenModalOpen, isAuthenModalOpen, profileInfo, onLogOut } =
+    useAuthen();
+  console.log("first", profileInfo);
   return (
     <header className="header">
       <div className="header-top">
@@ -16,7 +18,7 @@ const Header = () => {
           </div>
           <div className="header-right">
             {/* Not LogIn */}
-            <ul className="top-menu top-link-menu">
+            {/* <ul className="top-menu top-link-menu">
               <li>
                 <a
                   href="#signin-modal"
@@ -25,26 +27,55 @@ const Header = () => {
                   onClick={() => setIsAuthenModalOpen(true)}
                 >
                   <i className="icon-user" />
-                  Login | Resgister{" "}
+                  {profileInfo?.name || profileInfo.email}
                 </a>
               </li>
-            </ul>
-            {/* Logged In */}
-            {/* <ul class="top-menu">
-                            <li>
-                                <a href="#" class="top-link-menu"><i class="icon-user"></i>Tran Nghia </a>
-                                <ul>
-                                    <li>
-                                        <ul>
-                                            <li><a href="dashboard.html">Account Details</a></li>
-                                            <li><a href="dashboard.html">Your Orders</a></li>
-                                            <li><a href="dashboard.html">Wishlist <span>(3)</span></a></li>
-                                            <li><a href="#">Sign Out</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul> */}
+            </ul> */}
+            {profileInfo.id ? (
+              <ul class="top-menu">
+                <li>
+                  <a href="#" class="top-link-menu">
+                    {profileInfo?.name || profileInfo.email}
+                  </a>
+                  <ul>
+                    <li>
+                      <ul>
+                        <li>
+                          <Link to={PATHS.DASHBOARD}>Account Details</Link>
+                        </li>
+                        <li>
+                          <Link to={PATHS.DASHBOARD}>Your Orders</Link>
+                        </li>
+                        <li>
+                          <Link to={PATHS.DASHBOARD}>
+                            Wishlist <span>(3)</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <a href="#" onClick={onLogOut}>
+                            Sign Out
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            ) : (
+              <ul className="top-menu top-link-menu">
+                <li>
+                  <a
+                    href="#signin-modal"
+                    // data-toggle="modal"
+                    // className="top-menu-login"
+                    onClick={() => setIsAuthenModalOpen(true)}
+                  >
+                    <i className="icon-user" />
+                    Login & Register
+                  </a>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </div>
