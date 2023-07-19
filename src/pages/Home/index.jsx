@@ -8,8 +8,11 @@ import Deal from "./Deal";
 import Featured from "./Featured";
 import FeaturedProducts from "./FeaturedProducts";
 import Sperator from "./Sperator";
+import { useHome } from "./useHome";
 
 const HomePage = () => {
+  const { productProps } = useHome();
+  console.log(productProps);
   return (
     <>
       {" "}
@@ -17,7 +20,7 @@ const HomePage = () => {
         <Banner />
         <Featured />
         <div className="mb-7 mb-lg-11" />
-        {/* <FeaturedProducts /> */}
+        <FeaturedProducts {...productProps} />
         <Deal />
         <Carousel />
         <div className="container">

@@ -48,13 +48,13 @@ export const AuthenProvider = ({ children }) => {
         // get Profile
         onGetProfile(token);
         // message
-        message.success("Dang nhap thanh cong");
+        message.success("Đăng nhập thành công");
         // close modal
         closeAuthenModal();
       }
     } catch (error) {
       console.log("error", error);
-      message.error("Dang ky that bai roi ku");
+      message.error("Đăng ký thất bại! Vui lòng kiểm tra lại");
     }
   };
   const onLogOut = () => {

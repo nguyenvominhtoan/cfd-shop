@@ -1,5 +1,3 @@
-import axios from "axios";
-import { BASE_URL } from "../config/environments";
 import axiosInstance from "./axiosInstance";
 
 export const authService = {
@@ -12,6 +10,13 @@ export const authService = {
   getProfile(token = "") {
     console.log("token", token);
     return axiosInstance.get(`/customer/profiles`);
+  },
+  updateProfile(payload = {}) {
+    return axiosInstance.put(`/customer/profiles`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   },
   // updateProfile(payload = {}) {
   //   return axiosI;

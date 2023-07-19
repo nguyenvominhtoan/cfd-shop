@@ -1,6 +1,6 @@
 import React from "react";
 
-const Featured = () => {
+const Featured = ({ products }) => {
   return (
     <div className="container featured">
       <ul
@@ -78,49 +78,56 @@ const Featured = () => {
                                                             }
                                                         }'
           >
-            <div className="product product-2">
-              <figure className="product-media">
-                <a href="product-detail.html">
-                  <img
-                    src="assets/images/demos/demo-3/products/product-1.jpg"
-                    alt="Product image"
-                    className="product-image"
-                  />
-                </a>
-                <div className="product-action-vertical">
-                  <a
-                    href="#"
-                    className="btn-product-icon btn-wishlist btn-expandable"
-                  >
-                    <span>add to wishlist</span>
-                  </a>
-                </div>
-                <div className="product-action product-action-dark">
-                  <a
-                    href="#"
-                    className="btn-product btn-cart"
-                    title="Add to cart"
-                  >
-                    <span>add to cart</span>
-                  </a>
-                </div>
-              </figure>
-              <div className="product-body">
-                <h3 className="product-title">
-                  <a href="product-detail.html">
-                    GoPro - HERO7 Black HD Waterproof Action
-                  </a>
-                </h3>
-                <div className="product-price"> $349.99 </div>
-                <div className="ratings-container">
-                  <div className="ratings">
-                    <div className="ratings-val" style={{ width: "60%" }} />
+            {products?.leng > 0 &&
+              products.map((product, index) => {
+                return (
+                  <div key={product.id || index} className="product product-2">
+                    <figure className="product-media">
+                      <a href="product-detail.html">
+                        <img
+                          src="assets/images/demos/demo-3/products/product-1.jpg"
+                          alt="Product image"
+                          className="product-image"
+                        />
+                      </a>
+                      <div className="product-action-vertical">
+                        <a
+                          href="#"
+                          className="btn-product-icon btn-wishlist btn-expandable"
+                        >
+                          <span>add to wishlist</span>
+                        </a>
+                      </div>
+                      <div className="product-action product-action-dark">
+                        <a
+                          href="#"
+                          className="btn-product btn-cart"
+                          title="Add to cart"
+                        >
+                          <span>add to cart</span>
+                        </a>
+                      </div>
+                    </figure>
+                    <div className="product-body">
+                      <h3 className="product-title">
+                        <a href="product-detail.html">{product?.name}</a>
+                      </h3>
+                      <div className="product-price"> {product?.price}</div>
+                      <div className="ratings-container">
+                        <div className="ratings">
+                          <div
+                            className="ratings-val"
+                            style={{ width: "60%" }}
+                          />
+                        </div>
+                        <span className="ratings-text">( 2 Reviews )</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="ratings-text">( 2 Reviews )</span>
-                </div>
-              </div>
-            </div>
-            <div className="product product-2">
+                );
+              })}
+
+            {/* <div className="product product-2">
               <figure className="product-media">
                 <span className="product-label label-circle label-new">
                   New
@@ -169,8 +176,8 @@ const Featured = () => {
                   <span className="ratings-text">( 0 Reviews )</span>
                 </div>
               </div>
-            </div>
-            <div className="product product-2">
+            </div> */}
+            {/* <div className="product product-2">
               <figure className="product-media">
                 <a href="product-detail.html">
                   <img
@@ -296,7 +303,7 @@ const Featured = () => {
                   <span className="ratings-text">( 2 Reviews )</span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div
