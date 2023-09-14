@@ -14,6 +14,7 @@ import DashboardPage from "./pages/Dashboard";
 import ProductPage from "./pages/product/product";
 import ProductDetail from "./pages/product/productDetail";
 import BlogPage from "./pages/Blog";
+import Demo from "./components/Demo";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -31,6 +32,7 @@ function App() {
           <Route path={PATHS.PRIVACYPOLICY} element={<PrivacyPolicy />} />
           <Route path={PATHS.RETURNS} element={<ReturnsPage />} />
           <Route path={PATHS.PAYMENT} element={<PaymentPage />} />
+          <Route path={"/demo"} element={<Demo />} />
           <Route path={PATHS.DASHBOARD} element={<DashboardPage />}>
             {/* <Route index element={<MyInfo />} />
             <Route path={PATHS.PROFILE.COURSES} element={<MyCourses />} />

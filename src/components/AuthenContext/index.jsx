@@ -54,14 +54,10 @@ export const AuthenProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("error", error);
-      message.error("Đăng ký thất bại! Vui lòng kiểm tra lại");
+      message.error("Đăng nhập thất bại");
     }
   };
-  const onLogOut = () => {
-    localStorage.clear();
-    setProfileInfo("");
-    // message.success("Dang xuat thanh cong");
-  };
+
   const handleProduct = () => {};
   const onRegister = async (registerData) => {
     //call api
@@ -69,7 +65,7 @@ export const AuthenProvider = ({ children }) => {
       const res = await authService.register(registerData);
       console.log("res", res?.data?.data);
       if (res?.data?.data.id) {
-        message.success("Dang ky thanh cong");
+        message.success("Đăng ký thành công");
         onLogin({
           email: registerData.email,
           password: registerData.password,
@@ -77,10 +73,14 @@ export const AuthenProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("error", error);
-      message.error("Dang ky that bai roi ku");
+      message.error("Đăng ký thất bại");
     }
   };
-
+  const onLogOut = () => {
+    localStorage.clear();
+    setProfileInfo("");
+    message.success("Đăng xuất thành công");
+  };
   return (
     <AuthenContext.Provider
       value={{

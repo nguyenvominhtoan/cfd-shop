@@ -1,47 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ReactOwlCarousel from "react-owl-carousel";
+import ProductCart from "../../components/ProductCart/ProductCart";
+import { HOT_TABS } from "./useHome";
 
-const Featured = ({ products }) => {
+const Featured = ({ hotProductProps, selectedHotTab, onSelectHotTab }) => {
+  const [renderedProducts, setRenderedProducts] = useState([]);
+  console.log("hotProductProps", hotProductProps?.hotProducts);
+  useEffect(() => {
+    setRenderedProducts(hotProductProps?.hotProducts);
+  }, [hotProductProps]);
+  console.log("renderedProducts", renderedProducts);
+
+  const onTabChange = (tab) => {
+    setRenderedProducts([]);
+    setTimeout(() => {
+      onSelectHotTab?.(tab);
+    }, 300);
+  };
+
   return (
-    <div className="container featured">
+    <div className="container featured" style={{ minHeight: 550 }}>
       <ul
         className="nav nav-pills nav-border-anim nav-big justify-content-center mb-3"
         role="tablist"
       >
         <li className="nav-item">
           <a
-            className="nav-link active"
+            className={`nav-link ${
+              selectedHotTab === HOT_TABS.featured ? "active" : ""
+            }`}
             id="products-featured-link"
             data-toggle="tab"
             href="#products-featured-tab"
             role="tab"
             aria-controls="products-featured-tab"
             aria-selected="true"
+            onClick={() => onTabChange(HOT_TABS.featured)}
           >
             Featured
           </a>
         </li>
         <li className="nav-item">
           <a
-            className="nav-link"
+            className={`nav-link ${
+              selectedHotTab === HOT_TABS.sale ? "active" : ""
+            }`}
             id="products-sale-link"
             data-toggle="tab"
             href="#products-sale-tab"
             role="tab"
             aria-controls="products-sale-tab"
             aria-selected="false"
+            onClick={() => onTabChange(HOT_TABS.sale)}
           >
             On Sale
           </a>
         </li>
         <li className="nav-item">
           <a
-            className="nav-link"
+            className={`nav-link ${
+              selectedHotTab === HOT_TABS.top ? "active" : ""
+            }`}
             id="products-top-link"
             data-toggle="tab"
             href="#products-top-tab"
             role="tab"
             aria-controls="products-top-tab"
             aria-selected="false"
+            onClick={() => onTabChange(HOT_TABS.top)}
           >
             Top Rated
           </a>
@@ -49,85 +75,38 @@ const Featured = ({ products }) => {
       </ul>
       <div className="tab-content tab-content-carousel">
         <div
-          className="tab-pane p-0 fade show active"
-          id="products-featured-tab"
+          className={`tab-pane p-0 fade ${
+            renderedProducts?.length > 0 ? "show active" : ""
+          }`}
           role="tabpanel"
-          aria-labelledby="products-featured-link"
         >
-          <div
-            className="owl-carousel owl-full carousel-equal-height carousel-with-shadow"
-            data-toggle="owl"
-            data-owl-options='{
-                                                            "nav": true, 
-                                                            "dots": true,
-                                                            "margin": 20,
-                                                            "loop": false,
-                                                            "responsive": {
-                                                                "0": {
-                                                                    "items":2
-                                                                },
-                                                                "600": {
-                                                                    "items":2
-                                                                },
-                                                                "992": {
-                                                                    "items":3
-                                                                },
-                                                                "1200": {
-                                                                    "items":4
-                                                                }
-                                                            }
-                                                        }'
-          >
-            {products?.leng > 0 &&
-              products.map((product, index) => {
+          {renderedProducts?.length > 0 && (
+            <ReactOwlCarousel
+              className="owl-carousel owl-full carousel-equal-height carousel-with-shadow"
+              data-toggle="owl"
+              margin={20}
+              responsive={{
+                0: {
+                  items: 2,
+                },
+                600: {
+                  items: 2,
+                },
+                992: {
+                  items: 3,
+                },
+                1200: {
+                  items: 4,
+                },
+              }}
+            >
+              {renderedProducts?.map((product, index) => {
                 return (
-                  <div key={product.id || index} className="product product-2">
-                    <figure className="product-media">
-                      <a href="product-detail.html">
-                        <img
-                          src="assets/images/demos/demo-3/products/product-1.jpg"
-                          alt="Product image"
-                          className="product-image"
-                        />
-                      </a>
-                      <div className="product-action-vertical">
-                        <a
-                          href="#"
-                          className="btn-product-icon btn-wishlist btn-expandable"
-                        >
-                          <span>add to wishlist</span>
-                        </a>
-                      </div>
-                      <div className="product-action product-action-dark">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart"
-                          title="Add to cart"
-                        >
-                          <span>add to cart</span>
-                        </a>
-                      </div>
-                    </figure>
-                    <div className="product-body">
-                      <h3 className="product-title">
-                        <a href="product-detail.html">{product?.name}</a>
-                      </h3>
-                      <div className="product-price"> {product?.price}</div>
-                      <div className="ratings-container">
-                        <div className="ratings">
-                          <div
-                            className="ratings-val"
-                            style={{ width: "60%" }}
-                          />
-                        </div>
-                        <span className="ratings-text">( 2 Reviews )</span>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCart key={product?.id || index} product={product} />
                 );
               })}
 
-            {/* <div className="product product-2">
+              {/* <div className="product product-2">
               <figure className="product-media">
                 <span className="product-label label-circle label-new">
                   New
@@ -177,7 +156,7 @@ const Featured = ({ products }) => {
                 </div>
               </div>
             </div> */}
-            {/* <div className="product product-2">
+              {/* <div className="product product-2">
               <figure className="product-media">
                 <a href="product-detail.html">
                   <img
@@ -304,9 +283,10 @@ const Featured = ({ products }) => {
                 </div>
               </div>
             </div> */}
-          </div>
+            </ReactOwlCarousel>
+          )}
         </div>
-        <div
+        {/* <div
           className="tab-pane p-0 fade"
           id="products-sale-tab"
           role="tabpanel"
@@ -765,7 +745,7 @@ const Featured = ({ products }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
